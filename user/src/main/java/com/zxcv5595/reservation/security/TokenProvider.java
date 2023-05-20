@@ -44,10 +44,8 @@ public class TokenProvider {
         String username = getUsername(jwt);
         UserType userType = getUserType(jwt);
 
-        UserDetails userDetails=null;
-        if (userType == UserType.ROLE_OWNER) {
-            userDetails = ownerService.loadUserByUsername(username);
-        }
+        UserDetails userDetails = ownerService.loadUserByUsername(username);
+
         return new UsernamePasswordAuthenticationToken(userDetails, "",
                 userDetails.getAuthorities());
     }
