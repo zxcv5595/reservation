@@ -1,26 +1,22 @@
 package com.zxcv5595.reservation.controller;
 
-import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_USER;
 import static com.zxcv5595.reservation.type.UserType.ROLE_OWNER;
 
 import com.zxcv5595.reservation.domain.Owner;
+import com.zxcv5595.reservation.dto.Store.AddStore;
 import com.zxcv5595.reservation.dto.Store.SignInOwner;
 import com.zxcv5595.reservation.dto.Store.SignUpOwner;
 import com.zxcv5595.reservation.dto.Store.SignUpOwner.Response;
-import com.zxcv5595.reservation.exception.CustomException;
-import com.zxcv5595.reservation.repository.OwnerRepository;
 import com.zxcv5595.reservation.security.TokenProvider;
 import com.zxcv5595.reservation.service.OwnerService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/owner")
 public class OwnerController {
 
+    private static final String TOKEN_PREFIX = "Bearer ";
     private final OwnerService ownerService;
     private final TokenProvider tokenProvider;
 
-    private final OwnerRepository ownerRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signUpOwner(@Valid @RequestBody SignUpOwner.Request req) {
@@ -48,13 +44,17 @@ public class OwnerController {
 
     }
 
-    @GetMapping("/info")
+    @PostMapping("/add-store")
     @PreAuthorize("hasRole('OWNER')")
-    public Owner getInfo(@RequestHeader(value = "Authorization") String header,
-            @RequestParam("username") String userName) {
-        return ownerRepository.findByUsername(userName).orElseThrow(
-                () -> new CustomException(NOT_EXIST_USER)
-        );
+    public ResponseEntity<AddStore.Response>  addStore(@RequestHeader("Authorization") String token,
+           @RequestBody AddStore.Request req) {
+        token = token.substring(TOKEN_PREFIX.length());
+        String username = tokenProvider.getUsername(token);
+        //가게 추가
+        Owner owner = ownerService.addStore(username, req);
+
+        return ResponseEntity.ok(AddStore.Response.from(owner));
     }
+
 
 }
