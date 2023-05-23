@@ -35,4 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
-user/src/main/resources/application-KEY.properties
+users/src/main/resources/application-KEY.properties

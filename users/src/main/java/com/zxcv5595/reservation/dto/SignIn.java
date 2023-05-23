@@ -1,11 +1,11 @@
-package com.zxcv5595.reservation.dto.Store;
+package com.zxcv5595.reservation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class SignInOwner {
+public class SignIn {
 
     @Getter
     @Setter
@@ -15,7 +15,5 @@ public class SignInOwner {
         private String username;
         private String password;
     }
-
-
 
 }
