@@ -1,6 +1,8 @@
 package com.zxcv5595.reservation.config;
 
 import com.zxcv5595.reservation.security.JwtAuthenticationFilter;
+import java.util.Arrays;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,20 +25,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        List<String> permitAllPaths = Arrays.asList("/**/signup", "/**/signin"); // 모든 권한 허용 paths
+
         http
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**/signup", "/**/signin").permitAll()
+                .antMatchers(permitAllPaths.toArray(new String[0])).permitAll()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
-    public void configure(final WebSecurity web) throws Exception {
+    public void configure(final WebSecurity web) {
         web.ignoring()
                 .antMatchers("/swagger-ui/**");
     }
