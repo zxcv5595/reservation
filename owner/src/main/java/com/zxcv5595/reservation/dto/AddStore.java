@@ -1,7 +1,7 @@
-package com.zxcv5595.reservation.dto.Store;
+package com.zxcv5595.reservation.dto;
 
 import com.zxcv5595.reservation.domain.Owner;
-import com.zxcv5595.reservation.domain.Store;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -20,15 +20,6 @@ public class AddStore {
         private String storeName;
         private String address;
         private String description;
-
-        public Store fromEntity() {
-            return Store.builder()
-                    .storeName(this.storeName)
-                    .address(this.address)
-                    .description(this.description)
-                    .build();
-        }
-
     }
 
     @Getter
@@ -37,21 +28,15 @@ public class AddStore {
     @Builder
     public static class Response {
 
-        private String username;
-        private List<StoreDto> stores;
+        private List<StoreDto> stores = new ArrayList<>();
 
         public static Response from(Owner owner) {
-            List<StoreDto> storeDTOs = owner.getStores().stream()
-                    .map(StoreDto::from)
-                    .collect(Collectors.toList());
-
             return Response.builder()
-                    .username(owner.getUsername())
-                    .stores(storeDTOs)
+                    .stores(owner.getStores().stream()
+                            .map(StoreDto::from).collect(
+                            Collectors.toList()))
                     .build();
         }
-
     }
-
 
 }

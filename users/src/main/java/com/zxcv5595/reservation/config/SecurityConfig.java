@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        List<String> permitAllPaths = Arrays.asList("/**/signup", "/**/signin"); // 모든 권한 허용 paths
+        List<String> permitAllPaths = Arrays.asList("/**/signup", "/**/signin","/**/register"); // 모든 권한 허용 paths
 
         http
                 .httpBasic().disable()

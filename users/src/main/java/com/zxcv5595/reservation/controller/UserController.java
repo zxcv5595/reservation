@@ -27,8 +27,7 @@ public class UserController {
         /*
         회원가입
         username, password(min = 8, max = 20),
-        phone(010-1234-1234),
-        role = ROLE_OWNER or ROLE_CONSUMER
+        phone(010-1234-1234)
          */
         Response newUser = userService.signup(request); //회원 정보 저장
         String username = newUser.getUsername();

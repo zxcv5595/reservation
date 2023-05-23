@@ -1,4 +1,4 @@
-package com.zxcv5595.reservation.dto.Store;
+package com.zxcv5595.reservation.dto;
 
 import com.zxcv5595.reservation.domain.Store;
 import lombok.AllArgsConstructor;
@@ -17,12 +17,11 @@ public class StoreDto {
     private String address;
     private String description;
 
-    public static StoreDto from(Store store){
+    public static StoreDto from(Store store) {
         return StoreDto.builder()
                 .storeName(store.getStoreName())
                 .address(store.getAddress())
                 .description(store.getDescription())
                 .build();
     }
-
 }
