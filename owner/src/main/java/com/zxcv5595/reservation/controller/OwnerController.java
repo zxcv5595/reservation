@@ -4,6 +4,7 @@ import com.zxcv5595.reservation.domain.Owner;
 import com.zxcv5595.reservation.domain.User;
 import com.zxcv5595.reservation.dto.AddStore;
 import com.zxcv5595.reservation.service.OwnerService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +22,7 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@AuthenticationPrincipal User currentUser) { //로그인 토큰 필요
+    public ResponseEntity<String> register(@AuthenticationPrincipal User currentUser) { //로그인 후 토큰 필요
 
         ownerService.register(currentUser.getUsername());
         return ResponseEntity.ok("등록이 완료되었습니다.");
@@ -31,7 +32,7 @@ public class OwnerController {
     @PostMapping("/add-store")
     @PreAuthorize("hasRole('OWNER')")
     public ResponseEntity<AddStore.Response> addStore(@AuthenticationPrincipal User currentUser,
-           @RequestBody AddStore.Request request) {
+           @Valid @RequestBody AddStore.Request request) {
 
         Owner owner = ownerService.addStore(currentUser.getUsername(), request); //가게 추가
 

@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        List<String> permitAllPaths = Arrays.asList("/**/signup", "/**/signin","/**/register"); // 모든 권한 허용 paths
+        List<String> permitAllPaths = Arrays.asList("/**/signup", "/**/signin"); // 모든 권한 허용 paths
 
         http
                 .httpBasic().disable()
@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/owner/**","/consumer/**").authenticated()
                 .antMatchers(permitAllPaths.toArray(new String[0])).permitAll()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter,
