@@ -22,6 +22,7 @@ public class OwnerService {
     private final OwnerRepository ownerRepository;
     private final UserRepository userRepository;
 
+
     public void register(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_USER)); // 유저 확인
