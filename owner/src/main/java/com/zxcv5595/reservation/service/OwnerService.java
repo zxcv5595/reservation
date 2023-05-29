@@ -2,6 +2,7 @@ package com.zxcv5595.reservation.service;
 
 import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_ACCEPTED_RESERVATION;
 import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_EXIST_STORE;
+import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_EXPIRED_RESERVATION;
 import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_REGISTER_OWNER;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_STORE;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_USER;
@@ -17,6 +18,7 @@ import com.zxcv5595.reservation.repository.OwnerRepository;
 import com.zxcv5595.reservation.repository.ReservationListRepository;
 import com.zxcv5595.reservation.repository.UserRepository;
 import com.zxcv5595.reservation.type.Role;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -81,9 +83,7 @@ public class OwnerService {
         ReservationList reservation = reservationListRepository.findById(reservationId)
                 .orElseThrow(() -> new CustomException(NOT_VALID_RESERVATION)); //수락할 예약
 
-        if (reservation.isPermission()) { //이미 수락된 예약인지 확인
-            throw new CustomException(ALREADY_ACCEPTED_RESERVATION);
-        }
+        checkAccept(reservation); //수락 전, 유효성 검사
 
         Owner owner = ownerRepository.findByUserUsername(username)
                 .orElseThrow(() -> new CustomException(NOT_EXIST_USER)); //오너 정보
@@ -95,6 +95,15 @@ public class OwnerService {
         reservation.setPermission(true); //수락
 
         return reservation;
+    }
+
+    private void checkAccept(ReservationList reservation) {
+        if (reservation.isPermission()) { //이미 수락된 예약인지 확인
+            throw new CustomException(ALREADY_ACCEPTED_RESERVATION);
+        }
+        if (reservation.getExpiredTime().isBefore(LocalDateTime.now())) { //만료기간 확인
+            throw new CustomException(ALREADY_EXPIRED_RESERVATION);
+        }
     }
 
     private void validateStoreId(Long storeId, Owner owner) {

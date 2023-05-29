@@ -4,6 +4,7 @@ import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_STORE;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_USER;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_MATCHED_USER;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_VALID_TIME;
+import static com.zxcv5595.reservation.type.ErrorCode.RESERVATION_RESTRICTION;
 
 import com.zxcv5595.reservation.domain.ReservationList;
 import com.zxcv5595.reservation.domain.Review;
@@ -17,7 +18,9 @@ import com.zxcv5595.reservation.repository.ReviewRepository;
 import com.zxcv5595.reservation.repository.StoreRepository;
 import com.zxcv5595.reservation.repository.UserRepository;
 import com.zxcv5595.reservation.type.ErrorCode;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +56,9 @@ public class ConsumerService {
         //예약시간 유효성확인
         validateReservationTime(reservationTime, store.getId());
 
+        // 유저의 가게 당 하루에 1개의 예약 제한
+        reservationRestriction(user, store,reservationTime);
+
         //setting reservation
         ReservationList newReservation = ReservationList.builder()
                 .user(user)
@@ -68,6 +74,17 @@ public class ConsumerService {
 
         return newReservation;
 
+    }
+
+    private void reservationRestriction(User user, Store store, LocalDateTime reservationTime) {
+        LocalDate checkTime = reservationTime.toLocalDate();
+        LocalDateTime startOfToday = LocalDateTime.of(checkTime, LocalTime.MIN);
+        LocalDateTime endOfToday = LocalDateTime.of(checkTime, LocalTime.MAX);
+        boolean hasReservationToday = reservationListRepository.existsByUserAndStoreAndReservationTimeBetween(
+                user, store, startOfToday, endOfToday);
+        if (hasReservationToday) {
+            throw new CustomException(RESERVATION_RESTRICTION);
+        }
     }
 
     public Review writeReview(User user, ReviewDto.Request request) {

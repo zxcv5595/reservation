@@ -1,6 +1,8 @@
 package com.zxcv5595.reservation.repository;
 
 import com.zxcv5595.reservation.domain.ReservationList;
+import com.zxcv5595.reservation.domain.Store;
+import com.zxcv5595.reservation.domain.User;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +17,11 @@ public interface ReservationListRepository extends JpaRepository<ReservationList
 
     Optional<ReservationList> findById(Long reservationId);
 
-    Optional<ReservationList> findByUserPhone(String phone);
+    Optional<ReservationList> findByUserPhoneAndStoreIdAndReservationTimeBetween(String phone,
+            Long storeId, LocalDateTime start, LocalDateTime end);
+
+    boolean existsByUserAndStoreAndReservationTimeBetween(User user, Store store,
+            LocalDateTime startTime, LocalDateTime endTime);
 
 
 }
