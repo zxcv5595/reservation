@@ -44,7 +44,7 @@ public class ConsumerService {
                 request.getReservationTime());
 
         //예약시간 유효성확인
-        validateReservationTime(reservationTime);
+        validateReservationTime(reservationTime, store.getId());
 
         //setting reservation
         ReservationList newReservation = ReservationList.builder()
@@ -63,10 +63,10 @@ public class ConsumerService {
 
     }
 
-    private void validateReservationTime(LocalDateTime reservationTime) {
-        // 해당 예약 시간에 겹치는 예약이 있는지 확인
-        List<ReservationList> existingReservations = reservationListRepository.findByReservationTime(
-                reservationTime);
+    private void validateReservationTime(LocalDateTime reservationTime,Long storeId) {
+        // 해당 가게 그리고, 그 가게의 예약 시간에 겹치는 시간이 있는지 확인
+        List<ReservationList> existingReservations = reservationListRepository.findByReservationTimeAndStoreId(
+                reservationTime,storeId);
 
         //예약시간이 과거 이거나, 겹치는시간이 존재하면 예약불가
         if (reservationTime.isBefore(LocalDateTime.now()) || !existingReservations.isEmpty()) {
