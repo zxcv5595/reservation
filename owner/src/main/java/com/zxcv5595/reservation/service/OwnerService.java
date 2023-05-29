@@ -1,5 +1,12 @@
 package com.zxcv5595.reservation.service;
 
+import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_ACCEPTED_RESERVATION;
+import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_EXIST_STORE;
+import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_REGISTER_OWNER;
+import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_STORE;
+import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_USER;
+import static com.zxcv5595.reservation.type.ErrorCode.NOT_VALID_RESERVATION;
+
 import com.zxcv5595.reservation.domain.Owner;
 import com.zxcv5595.reservation.domain.ReservationList;
 import com.zxcv5595.reservation.domain.Store;
@@ -9,7 +16,6 @@ import com.zxcv5595.reservation.exception.CustomException;
 import com.zxcv5595.reservation.repository.OwnerRepository;
 import com.zxcv5595.reservation.repository.ReservationListRepository;
 import com.zxcv5595.reservation.repository.UserRepository;
-import com.zxcv5595.reservation.type.ErrorCode;
 import com.zxcv5595.reservation.type.Role;
 import java.util.HashSet;
 import java.util.List;
@@ -30,10 +36,10 @@ public class OwnerService {
 
     public void register(String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_USER)); // 유저 확인
+                .orElseThrow(() -> new CustomException(NOT_EXIST_USER)); // 유저 확인
 
         if (ownerRepository.existsByUser(user)) {
-            throw new CustomException(ErrorCode.ALREADY_REGISTER_OWNER); // 이미 OWNER에 등록되어있는지 확인
+            throw new CustomException(ALREADY_REGISTER_OWNER); // 이미 OWNER에 등록되어있는지 확인
         }
 
         getAuthority(user); //ROLE_OWNER 권한부여
@@ -45,7 +51,7 @@ public class OwnerService {
     @Transactional
     public Owner addStore(String username, AddStore.Request request) {
         Owner owner = ownerRepository.findByUserUsername(username)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_USER)); // 등록된 오너 가져오기
+                .orElseThrow(() -> new CustomException(NOT_EXIST_USER)); // 등록된 오너 가져오기
 
         Store newStore = Store.builder() //등록할 가게
                 .storeName(request.getStoreName())
@@ -62,7 +68,7 @@ public class OwnerService {
 
     public List<ReservationList> getReservationsByStoreId(String username, Long storeId) { //예약조회
         Owner owner = ownerRepository.findByUserUsername(username)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_USER)); //오너 정보
+                .orElseThrow(() -> new CustomException(NOT_EXIST_USER)); //오너 정보
 
         //자신의 가게인지 체크
         validateStoreId(storeId, owner);
@@ -71,12 +77,16 @@ public class OwnerService {
     }
 
     @Transactional
-    public ReservationList acceptReservation(String username,Long reservationId) {
+    public ReservationList acceptReservation(String username, Long reservationId) {
         ReservationList reservation = reservationListRepository.findById(reservationId)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_VALID_TIME)); //수락할 예약
+                .orElseThrow(() -> new CustomException(NOT_VALID_RESERVATION)); //수락할 예약
+
+        if (reservation.isPermission()) { //이미 수락된 예약인지 확인
+            throw new CustomException(ALREADY_ACCEPTED_RESERVATION);
+        }
 
         Owner owner = ownerRepository.findByUserUsername(username)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_USER)); //오너 정보
+                .orElseThrow(() -> new CustomException(NOT_EXIST_USER)); //오너 정보
         Long storeId = reservation.getStore().getId(); //가게 아이디
 
         //자신의 가게인지 체크
@@ -91,7 +101,7 @@ public class OwnerService {
         boolean valid = owner.getStores().stream()
                 .anyMatch(store -> Objects.equals(store.getId(), storeId));
         if (!valid) {
-            throw new CustomException(ErrorCode.NOT_EXIST_STORE);
+            throw new CustomException(NOT_EXIST_STORE);
         }
     }
 
@@ -107,7 +117,7 @@ public class OwnerService {
     private void validateStoreName(Owner owner, Store newStore) {
         if (owner.getStores().stream()
                 .anyMatch(store -> store.getStoreName().equals(newStore.getStoreName()))) {
-            throw new CustomException(ErrorCode.ALREADY_EXIST_STORE);
+            throw new CustomException(ALREADY_EXIST_STORE);
         }
     }
 }

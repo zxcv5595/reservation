@@ -7,9 +7,14 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReservationListRepository extends JpaRepository<ReservationList, Long> {
-    List<ReservationList> findByReservationTimeAndStoreId(LocalDateTime reservationTime, Long storeId);
+
+    List<ReservationList> findByReservationTimeAndStoreId(LocalDateTime reservationTime,
+            Long storeId);
+
     List<ReservationList> findByStoreId(Long storeId);
 
     Optional<ReservationList> findById(Long reservationId);
+
+    Optional<ReservationList> findByUserPhone(String phone);
 
 }
