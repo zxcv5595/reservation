@@ -17,7 +17,11 @@ public enum ErrorCode {
     NOT_VALID_RESERVATION("유효하지 않은 예약번호 입니다.", HttpStatus.FORBIDDEN),
     ALREADY_ACCEPTED_RESERVATION("이미 수락이 완료된 예약입니다.", HttpStatus.FORBIDDEN),
     NOT_VALID_TIME("예약 가능한 시간이 아닙니다.", HttpStatus.FORBIDDEN),
+    ALREADY_WRITTEN_REVIEW("이미 리뷰를 작성했습니다.", HttpStatus.FORBIDDEN),
     ALREADY_REGISTER_OWNER("이미 owner에 등록되었습니다.", HttpStatus.BAD_REQUEST),
+    ALREADY_VISITED_STORE("이미 방문처리 되었습니다.", HttpStatus.BAD_REQUEST),
+    NOT_MATCHED_USER("예약정보와 유저가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
+    NOT_VISITED_STORE("방문하기 전에는 리뷰를 작성할 수 없습니다.", HttpStatus.BAD_REQUEST),
     ALREADY_EXIST_STORE("이미 등록된 가게입니다.", HttpStatus.BAD_REQUEST),
     NOT_MATCHED_PASSWORD("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST),
     ALREADY_EXIST_USER("이미 가입된 회원입니다.", HttpStatus.BAD_REQUEST);

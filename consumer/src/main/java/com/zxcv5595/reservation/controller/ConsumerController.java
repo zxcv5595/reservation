@@ -1,9 +1,12 @@
 package com.zxcv5595.reservation.controller;
 
 import com.zxcv5595.reservation.domain.ReservationList;
+import com.zxcv5595.reservation.domain.Review;
 import com.zxcv5595.reservation.domain.Store;
 import com.zxcv5595.reservation.domain.User;
 import com.zxcv5595.reservation.dto.CreateReservation;
+import com.zxcv5595.reservation.dto.ReviewDto;
+import com.zxcv5595.reservation.dto.ReviewDto.Response;
 import com.zxcv5595.reservation.dto.StoreDto;
 import com.zxcv5595.reservation.service.ConsumerService;
 import javax.validation.Valid;
@@ -44,6 +47,12 @@ public class ConsumerController {
                 request); //예약
 
         return ResponseEntity.ok(CreateReservation.Response.fromEntity(reservation));
+    }
+
+    @PostMapping("/write-review")
+    public ResponseEntity<Response> writeReview(@AuthenticationPrincipal User currentUser,@Valid @RequestBody ReviewDto.Request request){
+        Review review = consumerService.writeReview(currentUser, request);
+        return ResponseEntity.ok(Response.fromEntity(review));
     }
 }
 

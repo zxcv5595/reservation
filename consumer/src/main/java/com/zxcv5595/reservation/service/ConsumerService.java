@@ -2,18 +2,24 @@ package com.zxcv5595.reservation.service;
 
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_STORE;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_EXIST_USER;
+import static com.zxcv5595.reservation.type.ErrorCode.NOT_MATCHED_USER;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_VALID_TIME;
 
 import com.zxcv5595.reservation.domain.ReservationList;
+import com.zxcv5595.reservation.domain.Review;
 import com.zxcv5595.reservation.domain.Store;
 import com.zxcv5595.reservation.domain.User;
 import com.zxcv5595.reservation.dto.CreateReservation.Request;
+import com.zxcv5595.reservation.dto.ReviewDto;
 import com.zxcv5595.reservation.exception.CustomException;
 import com.zxcv5595.reservation.repository.ReservationListRepository;
+import com.zxcv5595.reservation.repository.ReviewRepository;
 import com.zxcv5595.reservation.repository.StoreRepository;
 import com.zxcv5595.reservation.repository.UserRepository;
+import com.zxcv5595.reservation.type.ErrorCode;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +32,7 @@ public class ConsumerService {
     private final StoreRepository storeRepository;
     private final ReservationListRepository reservationListRepository;
     private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
 
     public Page<Store> searchStoresNameByKeyword(String keyword, Pageable page) {
         return storeRepository.findByStoreNameContainingIgnoreCase(keyword, page);
@@ -63,10 +70,43 @@ public class ConsumerService {
 
     }
 
-    private void validateReservationTime(LocalDateTime reservationTime,Long storeId) {
+    public Review writeReview(User user, ReviewDto.Request request) {
+        Long reservationId = request.getReservationId(); //예약번호
+        ReservationList reservation = reservationListRepository.findById(reservationId)
+                .orElseThrow(() -> new CustomException(
+                        ErrorCode.NOT_VALID_RESERVATION));//예약정보
+
+        validReservation(user, reservationId, reservation);
+
+        //setting review
+        Review newReview = Review.builder()
+                .reservation(reservation)
+                .content(request.getContent())
+                .rating(request.getRating())
+                .build();
+
+        reviewRepository.save(newReview);
+
+        return newReview;
+
+    }
+
+    private void validReservation(User user, Long reservationId, ReservationList reservation) {
+        if (reviewRepository.existsByReservationId(reservationId)) {
+            throw new CustomException(ErrorCode.ALREADY_WRITTEN_REVIEW);
+        }
+        if (!Objects.equals(reservation.getUser().getUsername(), user.getUsername())) {
+            throw new CustomException(NOT_MATCHED_USER);
+        } //유저정보, 예약정보 매칭확인
+        if (!reservation.isVisited()) {
+            throw new CustomException(ErrorCode.NOT_VISITED_STORE);
+        }
+    }
+
+    private void validateReservationTime(LocalDateTime reservationTime, Long storeId) {
         // 해당 가게 그리고, 그 가게의 예약 시간에 겹치는 시간이 있는지 확인
         List<ReservationList> existingReservations = reservationListRepository.findByReservationTimeAndStoreId(
-                reservationTime,storeId);
+                reservationTime, storeId);
 
         //예약시간이 과거 이거나, 겹치는시간이 존재하면 예약불가
         if (reservationTime.isBefore(LocalDateTime.now()) || !existingReservations.isEmpty()) {
