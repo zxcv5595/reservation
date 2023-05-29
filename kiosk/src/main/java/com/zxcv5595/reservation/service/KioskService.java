@@ -1,5 +1,6 @@
 package com.zxcv5595.reservation.service;
 
+import static com.zxcv5595.reservation.type.ErrorCode.ALREADY_VISITED_STORE;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_ACCEPTED_RESERVATION;
 import static com.zxcv5595.reservation.type.ErrorCode.NOT_MATCHED_PHONE;
 
@@ -24,6 +25,9 @@ public class KioskService {
 
         if (!reservation.isPermission()) { //수락된 예약인지 확인
             throw new CustomException(NOT_ACCEPTED_RESERVATION);
+        }
+        if (reservation.isVisited()) { // 이미 방문처리되었는지 확인
+            throw new CustomException(ALREADY_VISITED_STORE);
         }
 
         reservation.setVisited(true); //방문확인
