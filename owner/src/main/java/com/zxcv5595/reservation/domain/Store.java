@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
+@Setter // 테스트 코드에서 storeId를 set해줄 필요가 있었음
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
