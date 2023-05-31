@@ -17,10 +17,19 @@
 
 # 테스트 코드
 
-- <img src="https://github.com/zxcv5595/reservation/assets/109198584/4dda90cc-2cba-4f36-a26c-866e246f2eea"  width="400" height="200"/>        
-- <img src="https://github.com/zxcv5595/reservation/assets/109198584/314e5883-f31f-47cf-acf9-2cfbb014d034"  width="400" height="200"/>       
-- <img src="https://github.com/zxcv5595/reservation/assets/109198584/913d2a25-e30e-4a07-bdf5-bf3e9d54c876"  width="400" height="600"/>
-- 작성중...
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/4dda90cc-2cba-4f36-a26c-866e246f2eea"  width="400" height="200"/>
 
-ERD
-- <img src="https://github.com/zxcv5595/reservation/assets/109198584/b18f2bf2-fa9c-4f15-9a15-04d3154020ba"  width="700" height="600"/>
+
+
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/314e5883-f31f-47cf-acf9-2cfbb014d034"  width="400" height="200"/>
+
+
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/913d2a25-e30e-4a07-bdf5-bf3e9d54c876"  width="400" height="600"/>
+
+
+작성중...
+
+</table>
+
+# ERD
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/b18f2bf2-fa9c-4f15-9a15-04d3154020ba"  width="700" height="600"/>
