@@ -1,6 +1,7 @@
 package com.zxcv5595.reservation.dto;
 
 import com.zxcv5595.reservation.domain.Store;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,4 +25,15 @@ public class StoreDto {
                 .description(store.getDescription())
                 .build();
     }
+
+    @Override // OwnerController add-store 테스트코드에 사용됨
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StoreDto storeDto = (StoreDto) o;
+        return Objects.equals(storeName, storeDto.storeName) &&
+                Objects.equals(address, storeDto.address) &&
+                Objects.equals(description, storeDto.description);
+    }
+
 }

@@ -53,7 +53,7 @@ public class ConsumerService {
         LocalDateTime reservationTime = LocalDateTime.of(request.getReservationDate(),
                 request.getReservationTime());
 
-        //예약시간 유효성확인
+        //예약시간 유효성확인 : 최소 2시간전에 예약 및 겹치는 시간 확인
         validateReservationTime(reservationTime, store.getId());
 
         // 유저의 가게 당 하루에 1개의 예약 제한
@@ -121,6 +121,11 @@ public class ConsumerService {
     }
 
     private void validateReservationTime(LocalDateTime reservationTime, Long storeId) {
+        if(!reservationTime.isAfter(LocalDateTime.now().plusHours(2))) // 최소 2시간전에 예약
+        {
+            throw new CustomException(NOT_VALID_TIME);
+        }
+
         // 해당 가게 그리고, 그 가게의 예약 시간에 겹치는 시간이 있는지 확인
         List<ReservationList> existingReservations = reservationListRepository.findByReservationTimeAndStoreId(
                 reservationTime, storeId);

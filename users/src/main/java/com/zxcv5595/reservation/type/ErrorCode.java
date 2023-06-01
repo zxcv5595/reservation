@@ -13,7 +13,7 @@ public enum ErrorCode {
     NOT_EXIST_STORE("해당하는 가게가 없습니다.", HttpStatus.BAD_REQUEST),
     ACCESS_DENIED("접근할 수 있는 권한이 없습니다.", HttpStatus.FORBIDDEN),
     NOT_MATCHED_PHONE("일치하는 예약이 없습니다.", HttpStatus.FORBIDDEN),
-    RESERVATION_RESTRICTION("하루에 한번만 예약할 수 있습니다.", HttpStatus.FORBIDDEN),
+    RESERVATION_RESTRICTION("하루에 한 타임만 예약할 수 있습니다.", HttpStatus.FORBIDDEN),
     NOT_ACCEPTED_RESERVATION("수락되지않은 예약입니다.", HttpStatus.FORBIDDEN),
     NOT_VALID_RESERVATION("유효하지 않은 예약번호 입니다.", HttpStatus.FORBIDDEN),
     ALREADY_ACCEPTED_RESERVATION("이미 수락이 완료된 예약입니다.", HttpStatus.FORBIDDEN),
