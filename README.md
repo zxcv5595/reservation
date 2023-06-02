@@ -15,7 +15,8 @@
 - [x] 예약 및 사용 이후에 리뷰를 작성할 수 있다. - costomer 모듈
 - [x] 서비스 이용 중 애로사항 발생 - 점장은 승인/예약 거절을 할 수 있다. - owner 모듈
 
-# 테스트 코드 (Mickito, WevMvcTest를 이용한, 유닛테스트 수행)
+# 테스트 코드 (Mickito, WebMvcTest를 이용한, 유닛테스트 수행)
+when, given, then 방식으로 작성 혹은 Act and Assert
 
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/4dda90cc-2cba-4f36-a26c-866e246f2eea"  width="400" height="200"/>
 
@@ -42,8 +43,13 @@
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/aa1ffbb3-8058-4427-9afe-fb9d990c1cc2"  width="400" height="200"/>
 
 
-# ERD(각 entity FetchMode- lazy, 양방향관계는 entity graph를 사용하여 쿼리 조회, 단방향은 OneToOne, ManyToOne을 사용)
+# ERD(각 entity FetchMode- Lazy, 양방향관계는 entity graph를 사용하여 쿼리 조회, 단방향은 OneToOne, ManyToOne을 사용)
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/b18f2bf2-fa9c-4f15-9a15-04d3154020ba"  width="700" height="600"/>
 
 # API docs (Spring Rest docs)
 Swagger 대신, Spring Rest docs을 사용하였으며, 테스트 코드를 작성하여 각 모듈 target/snippets에 docs 파일로 저장되게끔 자동화
+
+# Spring Security
+- Jwt 토큰 발행
+- owner 모듈: 등록을 제외한 기능은 권한 필요 @PreAuthorize("hasRole('OWNER')")
+- 회원가입, 로그인 기능은 permitAll(), 나머지 기능은 authenticated()로 로그인 필요.
