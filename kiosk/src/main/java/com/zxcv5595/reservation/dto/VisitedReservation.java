@@ -17,4 +17,12 @@ public class VisitedReservation {
         private String phone;
     }
 
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Response{
+        private String message;
+    }
+
 }
