@@ -27,7 +27,11 @@
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/913d2a25-e30e-4a07-bdf5-bf3e9d54c876"  width="400" height="600"/>
 
 
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/fd6a2820-af44-4e92-b885-51b46dbd6e0a"  width="400" height="200"/>
+
 작성중...
+
+
 
 </table>
 
