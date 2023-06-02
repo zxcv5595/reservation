@@ -16,4 +16,12 @@ public class SignIn {
         private String password;
     }
 
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Response{
+        private String token;
+    }
+
 }

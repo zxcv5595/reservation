@@ -1,0 +1,8 @@
+[source,bash]
+----
+$ echo '{
+  "username" : "username",
+  "password" : "password"
+}' | http POST 'https://docs.api.com:8080/user/signin' \
+    'Content-Type:application/json;charset=UTF-8'
+----

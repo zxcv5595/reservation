@@ -1,0 +1,6 @@
+[source,options="nowrap"]
+----
+{
+  "message" : "username님 환영합니다."
+}
+----

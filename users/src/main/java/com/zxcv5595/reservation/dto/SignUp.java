@@ -46,11 +46,11 @@ public class SignUp {
     @Builder
     public static class Response {
 
-        private String username;
+        private String message;
 
         public static Response fromEntity(User user) {
             return Response.builder()
-                    .username(user.getUsername())
+                    .message(user.getUsername()+"님 환영합니다.")
                     .build();
         }
 

@@ -1,0 +1,8 @@
+|===
+|Path|Type|Description
+
+|`+token+`
+|`+String+`
+|The generated token
+
+|===

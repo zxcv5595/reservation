@@ -139,7 +139,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    @DisplayName("가게 수락")
+    @DisplayName("예약 수락")
     void acceptReservation_ShouldReturnAcceptedReservation() {
         // given
         User currentUser = new User();

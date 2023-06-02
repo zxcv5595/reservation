@@ -1,0 +1,12 @@
+[source,http,options="nowrap"]
+----
+POST /user/signin HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 59
+Host: docs.api.com:8080
+
+{
+  "username" : "username",
+  "password" : "password"
+}
+----
