@@ -9,19 +9,11 @@ Pragma: no-cache
 Expires: 0
 Strict-Transport-Security: max-age=31536000 ; includeSubDomains
 X-Frame-Options: DENY
-Content-Length: 328
+Content-Length: 74
 
-[ {
-  "storeName" : "My Store",
-  "username" : "testUser",
-  "reservationTime" : "2023-06-02T15:59:04.7970362",
-  "permission" : false,
-  "visited" : false
-}, {
-  "storeName" : "My Store",
-  "username" : "testUser",
-  "reservationTime" : "2023-06-02T16:29:04.7970362",
-  "permission" : false,
-  "visited" : false
-} ]
+{
+  "reservationId" : 1,
+  "content" : "Great store",
+  "rating" : 5
+}
 ----

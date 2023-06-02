@@ -1,0 +1,16 @@
+|===
+|Path|Type|Description
+
+|`+reservationId+`
+|`+Number+`
+|예약 아이디번호
+
+|`+content+`
+|`+String+`
+|리뷰내용
+
+|`+rating+`
+|`+Number+`
+|별점 0~5(int)
+
+|===

@@ -1,0 +1,13 @@
+[source,http,options="nowrap"]
+----
+POST /consumer/write-review HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 74
+Host: docs.api.com:8080
+
+{
+  "reservationId" : 1,
+  "content" : "Great store",
+  "rating" : 5
+}
+----

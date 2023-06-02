@@ -1,0 +1,16 @@
+|===
+|Path|Type|Description
+
+|`+storeName+`
+|`+String+`
+|가게 이름
+
+|`+reservationDate+`
+|`+String+`
+|날짜 (pattern = yyyy-MM-dd)
+
+|`+reservationTime+`
+|`+String+`
+|시간 (pattern = HH:mm
+
+|===

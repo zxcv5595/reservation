@@ -1,0 +1,104 @@
+|===
+|Path|Type|Description
+
+|`+content[].storeName+`
+|`+String+`
+|The name of the store
+
+|`+content[].address+`
+|`+String+`
+|The address of the store
+
+|`+content[].description+`
+|`+String+`
+|The description of the store
+
+|`+pageable+`
+|`+Object+`
+|Paging information
+
+|`+pageable.sort+`
+|`+Object+`
+|Sorting information
+
+|`+pageable.sort.sorted+`
+|`+Boolean+`
+|Is the sort order sorted
+
+|`+pageable.sort.unsorted+`
+|`+Boolean+`
+|Is the sort order unsorted
+
+|`+pageable.sort.empty+`
+|`+Boolean+`
+|Is the sort order empty
+
+|`+pageable.pageNumber+`
+|`+Number+`
+|The page number
+
+|`+pageable.pageSize+`
+|`+Number+`
+|The page size
+
+|`+pageable.offset+`
+|`+Number+`
+|The offset
+
+|`+pageable.paged+`
+|`+Boolean+`
+|Is it a paged request
+
+|`+pageable.unpaged+`
+|`+Boolean+`
+|Is it an unpaged request
+
+|`+sort+`
+|`+Object+`
+|Sorting information
+
+|`+sort.sorted+`
+|`+Boolean+`
+|Is the sort order sorted
+
+|`+sort.unsorted+`
+|`+Boolean+`
+|Is the sort order unsorted
+
+|`+sort.empty+`
+|`+Boolean+`
+|Is the sort order empty
+
+|`+last+`
+|`+Boolean+`
+|Is it the last page
+
+|`+totalPages+`
+|`+Number+`
+|Total number of pages
+
+|`+totalElements+`
+|`+Number+`
+|Total number of elements
+
+|`+number+`
+|`+Number+`
+|The current page number
+
+|`+first+`
+|`+Boolean+`
+|Is it the first page
+
+|`+numberOfElements+`
+|`+Number+`
+|The number of elements in the current page
+
+|`+size+`
+|`+Number+`
+|The page size
+
+|`+empty+`
+|`+Boolean+`
+|Is the page empty
+
+|===

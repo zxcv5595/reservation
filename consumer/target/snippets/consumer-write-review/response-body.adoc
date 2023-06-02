@@ -1,0 +1,8 @@
+[source,options="nowrap"]
+----
+{
+  "reservationId" : 1,
+  "content" : "Great store",
+  "rating" : 5
+}
+----

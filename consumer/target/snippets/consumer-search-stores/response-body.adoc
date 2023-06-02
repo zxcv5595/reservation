@@ -1,0 +1,39 @@
+[source,options="nowrap"]
+----
+{
+  "content" : [ {
+    "storeName" : "Store 1",
+    "address" : "address",
+    "description" : "description"
+  }, {
+    "storeName" : "Store 2",
+    "address" : "address",
+    "description" : "description"
+  } ],
+  "pageable" : {
+    "sort" : {
+      "empty" : true,
+      "sorted" : false,
+      "unsorted" : true
+    },
+    "offset" : 0,
+    "pageSize" : 10,
+    "pageNumber" : 0,
+    "unpaged" : false,
+    "paged" : true
+  },
+  "last" : true,
+  "totalPages" : 1,
+  "totalElements" : 2,
+  "size" : 10,
+  "number" : 0,
+  "sort" : {
+    "empty" : true,
+    "sorted" : false,
+    "unsorted" : true
+  },
+  "numberOfElements" : 2,
+  "first" : true,
+  "empty" : false
+}
+----

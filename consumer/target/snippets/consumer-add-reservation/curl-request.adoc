@@ -1,0 +1,10 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/consumer/add-reservation' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{
+  "storeName" : "StoreName",
+  "reservationDate" : "2023-06-02",
+  "reservationTime" : "16:28:41.6589066"
+}'
+----

@@ -1,0 +1,4 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/consumer/search-store?keyword=Store&page=0&size=10' -i -X GET
+----

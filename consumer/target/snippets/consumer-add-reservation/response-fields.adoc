@@ -1,0 +1,20 @@
+|===
+|Path|Type|Description
+
+|`+username+`
+|`+String+`
+|예약자
+
+|`+storeName+`
+|`+String+`
+|가게이름
+
+|`+reservationTime+`
+|`+String+`
+|예약날짜,시간
+
+|`+permission+`
+|`+String+`
+|승인이 확인되면 예약이 완료됩니다.
+
+|===

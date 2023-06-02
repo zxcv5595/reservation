@@ -1,0 +1,10 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/consumer/write-review' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{
+  "reservationId" : 1,
+  "content" : "Great store",
+  "rating" : 5
+}'
+----

@@ -1,0 +1,9 @@
+[source,bash]
+----
+$ echo '{
+  "reservationId" : 1,
+  "content" : "Great store",
+  "rating" : 5
+}' | http POST 'https://docs.api.com:8080/consumer/write-review' \
+    'Content-Type:application/json;charset=UTF-8'
+----

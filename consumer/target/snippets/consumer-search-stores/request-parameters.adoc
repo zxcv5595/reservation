@@ -1,0 +1,13 @@
+|===
+|Parameter|Description
+
+|`+keyword+`
+|The keyword for store search
+
+|`+page+`
+|The page number
+
+|`+size+`
+|The page size
+
+|===

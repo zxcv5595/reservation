@@ -34,6 +34,7 @@ import com.zxcv5595.reservation.type.Role;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,7 +80,7 @@ class OwnerControllerTest {
         User currentUser = User.builder()
                 .username("testUser")
                 .password("password")
-                .roles(Collections.singleton(Role.ROLE_OWNER))
+                .roles(new HashSet<>())
                 .build();
 
         // 모의 사용자 설정
@@ -241,14 +242,10 @@ class OwnerControllerTest {
                         ),
                         responseFields(
                                 // Define other response fields
-                                fieldWithPath("[].storeName").description(
-                                        "The ID of the reservation"),
-                                fieldWithPath("[].username").description(
-                                        "The name of the reservation"),
-                                fieldWithPath("[].reservationTime").description(
-                                        "The ID of the reservation"),
-                                fieldWithPath("[].permission").description(
-                                        "The ID of the reservation"),
+                                fieldWithPath("[].storeName").description("The ID of the reservation"),
+                                fieldWithPath("[].username").description("The name of the reservation"),
+                                fieldWithPath("[].reservationTime").description("The ID of the reservation"),
+                                fieldWithPath("[].permission").description("The ID of the reservation"),
                                 fieldWithPath("[].visited").description("The ID of the reservation")
                         )
                 ));
@@ -308,18 +305,14 @@ class OwnerControllerTest {
                         preprocessResponse(prettyPrint()),
                         requestParameters(
                                 // Define the request parameters
-                                parameterWithName("reservationId").description(
-                                        "The ID of the reservation")
+                                parameterWithName("reservationId").description("The ID of the reservation")
                         ),
                         responseFields(
                                 // Define other response fields
                                 fieldWithPath("storeName").description("The ID of the reservation"),
-                                fieldWithPath("username").description(
-                                        "The name of the reservation"),
-                                fieldWithPath("reservationTime").description(
-                                        "The ID of the reservation"),
-                                fieldWithPath("permission").description(
-                                        "The ID of the reservation"),
+                                fieldWithPath("username").description("The name of the reservation"),
+                                fieldWithPath("reservationTime").description("The ID of the reservation"),
+                                fieldWithPath("permission").description("The ID of the reservation"),
                                 fieldWithPath("visited").description("The ID of the reservation")
                         )
                 ));
@@ -327,6 +320,7 @@ class OwnerControllerTest {
         // then
         verify(ownerService).acceptReservation(eq("testUser"), eq(reservationId));
     }
+
 
 
 }

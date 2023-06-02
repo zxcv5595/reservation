@@ -1,0 +1,9 @@
+[source,bash]
+----
+$ echo '{
+  "storeName" : "StoreName",
+  "reservationDate" : "2023-06-02",
+  "reservationTime" : "16:28:41.6589066"
+}' | http POST 'https://docs.api.com:8080/consumer/add-reservation' \
+    'Content-Type:application/json;charset=UTF-8'
+----

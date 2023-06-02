@@ -1,0 +1,9 @@
+[source,options="nowrap"]
+----
+{
+  "username" : "testUser",
+  "storeName" : "StoreName",
+  "reservationTime" : "2023-06-02T19:28:41.6599079",
+  "permission" : "승인이 확인되면 예약이 완료됩니다."
+}
+----
