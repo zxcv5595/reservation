@@ -29,11 +29,21 @@
 
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/fd6a2820-af44-4e92-b885-51b46dbd6e0a"  width="400" height="200"/>
 
-작성중...
+
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/607eb888-820b-485a-9cca-d46131a43605"  width="400" height="200"/>
 
 
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/76d584db-fc7b-4b7c-a14a-86bf4264144d"  width="400" height="200"/>
 
-</table>
+
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/d0fbbc88-7d09-4658-9bd2-52f70487dd94"  width="400" height="200"/>
+
+
+<img src="https://github.com/zxcv5595/reservation/assets/109198584/aa1ffbb3-8058-4427-9afe-fb9d990c1cc2"  width="400" height="200"/>
+
 
 # ERD
 <img src="https://github.com/zxcv5595/reservation/assets/109198584/b18f2bf2-fa9c-4f15-9a15-04d3154020ba"  width="700" height="600"/>
+
+# API docs (Spring Rest docs)
+Swagger 대신, Spring Rest docs을 사용하였으며, 테스트 코드를 작성하여 각 모듈 target/snippets에 docs 파일로 저장되게끔 자동화
