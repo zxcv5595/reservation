@@ -1,0 +1,8 @@
+|===
+|Path|Type|Description
+
+|`+message+`
+|`+String+`
+|응답 메시지 : 방문처리 되었습니다.
+
+|===

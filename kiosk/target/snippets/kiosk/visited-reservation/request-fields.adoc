@@ -1,0 +1,12 @@
+|===
+|Path|Type|Description
+
+|`+phone+`
+|`+String+`
+|사용자 전화번호(pattern : 010-1234-1234)
+
+|`+storeId+`
+|`+Number+`
+|가게 ID
+
+|===

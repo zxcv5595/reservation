@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"storeId":1,"phone":"010-1234-1234"}
+----

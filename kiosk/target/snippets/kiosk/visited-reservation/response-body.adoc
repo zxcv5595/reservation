@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"message":"방문처리 되었습니다."}
+----
