@@ -4,6 +4,7 @@ import static com.zxcv5595.reservation.type.ErrorCode.ACCESS_DENIED;
 
 import com.zxcv5595.reservation.dto.ErrorResponse;
 import com.zxcv5595.reservation.type.ErrorCode;
+import io.jsonwebtoken.MalformedJwtException;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -39,4 +40,14 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(ACCESS_DENIED
                 , ACCESS_DENIED.getStatus().value(), ACCESS_DENIED.getMessage());
     }
+
+    @ExceptionHandler(MalformedJwtException.class)
+    public ErrorResponse handleMalformedJwtException(MalformedJwtException e) {
+        log.error("MalformedJwtException is occurred", e);
+
+        return new ErrorResponse(ACCESS_DENIED
+                , ACCESS_DENIED.getStatus().value(), ACCESS_DENIED.getMessage());
+    }
+
+
 }

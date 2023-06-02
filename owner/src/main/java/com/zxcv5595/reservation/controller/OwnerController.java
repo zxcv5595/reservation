@@ -6,7 +6,9 @@ import com.zxcv5595.reservation.domain.User;
 import com.zxcv5595.reservation.dto.AddStore;
 import com.zxcv5595.reservation.dto.Register.Response;
 import com.zxcv5595.reservation.dto.ReservationDto;
+import com.zxcv5595.reservation.exception.CustomException;
 import com.zxcv5595.reservation.service.OwnerService;
+import com.zxcv5595.reservation.type.ErrorCode;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
@@ -31,6 +33,11 @@ public class OwnerController {
     @PostMapping("/register")
     public ResponseEntity<Response> register(
             @AuthenticationPrincipal User currentUser) { //로그인 후 토큰 필요
+
+        if (currentUser == null) {
+            // 토큰 없이 접근한 경우에 대한 처리
+            throw new CustomException(ErrorCode.ACCESS_DENIED);
+        }
 
         ownerService.register(currentUser.getUsername());
 

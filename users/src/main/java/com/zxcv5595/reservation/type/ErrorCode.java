@@ -15,6 +15,7 @@ public enum ErrorCode {
     NOT_MATCHED_PHONE("일치하는 예약이 없습니다.", HttpStatus.FORBIDDEN),
     RESERVATION_RESTRICTION("하루에 한 타임만 예약할 수 있습니다.", HttpStatus.FORBIDDEN),
     NOT_ACCEPTED_RESERVATION("수락되지않은 예약입니다.", HttpStatus.FORBIDDEN),
+    INVALID_FORMED_JWT(" JWT(JSON Web Token)의 형식이 잘못됐습니다.", HttpStatus.FORBIDDEN),
     NOT_VALID_RESERVATION("유효하지 않은 예약번호 입니다.", HttpStatus.FORBIDDEN),
     ALREADY_ACCEPTED_RESERVATION("이미 수락이 완료된 예약입니다.", HttpStatus.FORBIDDEN),
     NOT_VALID_TIME("예약 가능한 시간이 아닙니다.", HttpStatus.FORBIDDEN),
