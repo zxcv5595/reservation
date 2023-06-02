@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http --form POST 'https://docs.api.com:8080/owner/accept-reservation' \
+    'reservationId=123'
+----

@@ -1,0 +1,9 @@
+[source,bash]
+----
+$ echo '{
+  "storeName" : "My Store",
+  "address" : "address",
+  "description" : "description"
+}' | http POST 'https://docs.api.com:8080/owner/add-store' \
+    'Content-Type:application/json;charset=UTF-8'
+----

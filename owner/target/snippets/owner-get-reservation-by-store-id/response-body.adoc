@@ -1,0 +1,16 @@
+[source,options="nowrap"]
+----
+[ {
+  "storeName" : "My Store",
+  "username" : "testUser",
+  "reservationTime" : "2023-06-02T13:25:36.6619831",
+  "permission" : false,
+  "visited" : false
+}, {
+  "storeName" : "My Store",
+  "username" : "testUser",
+  "reservationTime" : "2023-06-02T13:55:36.6619831",
+  "permission" : false,
+  "visited" : false
+} ]
+----

@@ -1,0 +1,7 @@
+|===
+|Parameter|Description
+
+|`+reservationId+`
+|The ID of the reservation
+
+|===

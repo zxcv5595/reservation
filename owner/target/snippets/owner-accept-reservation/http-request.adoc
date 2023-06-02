@@ -1,0 +1,8 @@
+[source,http,options="nowrap"]
+----
+POST /owner/accept-reservation HTTP/1.1
+Host: docs.api.com:8080
+Content-Type: application/x-www-form-urlencoded
+
+reservationId=123
+----

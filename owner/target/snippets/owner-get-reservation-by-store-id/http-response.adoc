@@ -1,0 +1,27 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options: DENY
+Content-Length: 328
+
+[ {
+  "storeName" : "My Store",
+  "username" : "testUser",
+  "reservationTime" : "2023-06-02T13:25:36.6619831",
+  "permission" : false,
+  "visited" : false
+}, {
+  "storeName" : "My Store",
+  "username" : "testUser",
+  "reservationTime" : "2023-06-02T13:55:36.6619831",
+  "permission" : false,
+  "visited" : false
+} ]
+----

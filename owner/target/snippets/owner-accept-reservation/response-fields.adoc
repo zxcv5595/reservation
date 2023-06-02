@@ -1,0 +1,24 @@
+|===
+|Path|Type|Description
+
+|`+storeName+`
+|`+String+`
+|The ID of the reservation
+
+|`+username+`
+|`+String+`
+|The name of the reservation
+
+|`+reservationTime+`
+|`+String+`
+|The ID of the reservation
+
+|`+permission+`
+|`+Boolean+`
+|The ID of the reservation
+
+|`+visited+`
+|`+Boolean+`
+|The ID of the reservation
+
+|===

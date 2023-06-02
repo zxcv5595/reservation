@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http POST 'https://docs.api.com:8080/owner/register' \
+    'Content-Type:application/json;charset=UTF-8'
+----

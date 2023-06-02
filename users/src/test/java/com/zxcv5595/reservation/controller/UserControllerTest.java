@@ -36,9 +36,8 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 @AutoConfigureRestDocs(outputDir = "target/snippets", uriScheme = "https", uriHost = "docs.api.com")
-@WebMvcTest(UserController.class)
+@WebMvcTest(controllers = UserController.class)
 @ExtendWith(RestDocumentationExtension.class)
 @EnableMockMvc
 public class UserControllerTest {

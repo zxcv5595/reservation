@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/owner/accept-reservation' -i -X POST \
+    -d 'reservationId=123'
+----

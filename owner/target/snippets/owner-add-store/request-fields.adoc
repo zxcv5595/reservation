@@ -1,0 +1,16 @@
+|===
+|Path|Type|Description
+
+|`+storeName+`
+|`+String+`
+|The name of the store
+
+|`+address+`
+|`+String+`
+|The address of the store
+
+|`+description+`
+|`+String+`
+|The description of the store
+
+|===

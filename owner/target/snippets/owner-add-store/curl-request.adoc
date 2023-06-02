@@ -1,0 +1,10 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/owner/add-store' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{
+  "storeName" : "My Store",
+  "address" : "address",
+  "description" : "description"
+}'
+----

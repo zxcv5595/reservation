@@ -1,0 +1,10 @@
+[source,options="nowrap"]
+----
+{
+  "stores" : [ {
+    "storeName" : "My Store",
+    "address" : "address",
+    "description" : "description"
+  } ]
+}
+----

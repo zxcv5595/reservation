@@ -1,0 +1,4 @@
+[source,bash]
+----
+$ curl 'https://docs.api.com:8080/owner/read-reservation?storeId=123' -i -X GET
+----

@@ -4,6 +4,7 @@ import com.zxcv5595.reservation.domain.Owner;
 import com.zxcv5595.reservation.domain.ReservationList;
 import com.zxcv5595.reservation.domain.User;
 import com.zxcv5595.reservation.dto.AddStore;
+import com.zxcv5595.reservation.dto.Register.Response;
 import com.zxcv5595.reservation.dto.ReservationDto;
 import com.zxcv5595.reservation.service.OwnerService;
 import java.util.List;
@@ -28,11 +29,12 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(
+    public ResponseEntity<Response> register(
             @AuthenticationPrincipal User currentUser) { //로그인 후 토큰 필요
 
         ownerService.register(currentUser.getUsername());
-        return ResponseEntity.ok("등록이 완료되었습니다.");
+
+        return ResponseEntity.ok(new Response("등록이 완료되었습니다."));
 
     }
 
